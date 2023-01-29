@@ -34,7 +34,9 @@ db.connect((err) => {
 
 // get all users
 app.get("/user", (req, res) => {
+  // Write out the query
   let qr = `select * from users`;
+  // use the query string
   db.query(qr, (err, result) => {
     if (err) console.log(err, "query error message");
     if (result.length > 0) {
@@ -48,6 +50,7 @@ app.get("/user", (req, res) => {
 
 // get user by id
 app.get('/user/:id', (req, res) => {
+  // store the request user id
     let gID = req.params.id;
     let qr = `select * from users where id = ${gID}`;
     db.query(qr, (err, result) => {
@@ -112,7 +115,7 @@ app.put('/user/:id',(req,res)=>{
 // DELETE (DELETE) single user data
 
 app.delete('/user/:id',(req,res)=>{
-    console.log(req.params.id,'dlet');
+    console.log(req.params.id,'deleted usr id');
     let gID = req.params.id;
     let qr = `delete from users where id = '${gID}'`;
     db.query(qr,(err,result)=>{
